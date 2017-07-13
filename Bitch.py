@@ -4,7 +4,7 @@ def supersum(a, b):
 
 class MyClass:
     """A simple example class"""
-    i = 12345
+    i = 1234
 
     def f(self):
         return 'hello world'
