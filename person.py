@@ -10,10 +10,23 @@ class Person(object):
     def give_raise(self, percent):
         self.pay = int(self.pay * (1 + percent))
 
+    def __str__(self):
+        return '[Person: %s, %s, %s]' % (self.name, self.pay, self.job)
+
+
+class Manager(Person):
+    def __init__(self, name, pay):
+        Person.__init__(self, name, 'mgr', pay)
+
+    def give_raise(self, percent, bonus=.10):
+        Person.give_raise(self, percent + bonus)
+
 if __name__ == '__main__':
     bob = Person('Bob Smith')
     sue = Person('Sue Jones', job='dev', pay=100000)
+    tom = Manager('Tom Jones', 50000)
 
-    print(bob.last_name())
-    sue.give_raise(.20)
-    print(sue)
+    for obj in (bob, sue, tom):
+        obj.give_raise(.10)
+        print(obj)
+
